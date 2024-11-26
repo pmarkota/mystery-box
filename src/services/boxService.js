@@ -1,4 +1,4 @@
-const API_URL = "https://mystery-back.vercel.app/api";
+const API_URL = "https://mystery-back.vercel.app/api/box-selection";
 
 export const fetchBoxes = async (token) => {
   try {
