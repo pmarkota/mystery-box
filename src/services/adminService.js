@@ -74,7 +74,7 @@ export const updateUserCredits = async (token, userId, credits) => {
 
 export const searchUsers = async (token, username) => {
   try {
-    const response = await fetch(`${API_URL}/search-users-by-username`, {
+    const response = await fetch(`${API_URL}/admin/search-users-by-username`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
