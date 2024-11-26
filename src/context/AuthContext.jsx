@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password) => {
     try {
       const response = await fetch(
-        "http://mystery-back.vercel.app/api/auth/user/login",
+        "https://mystery-back.vercel.app/api/auth/user/login",
         {
           method: "POST",
           headers: {
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
   const adminLogin = async (username, password) => {
     try {
       const response = await fetch(
-        "http://mystery-back.vercel.app/api/auth/admin/login",
+        "https://mystery-back.vercel.app/api/auth/admin/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

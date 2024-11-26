@@ -1,4 +1,4 @@
-const API_URL = "http://mystery-back.vercel.app/api";
+const API_URL = "https://mystery-back.vercel.app/api";
 
 export const fetchUserData = async (token, userId) => {
   try {

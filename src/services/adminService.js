@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/user-management/admin";
+const API_URL = "https://mystery-back.vercel.app/api";
 
 export const getAllUsers = async (token) => {
   try {
@@ -90,7 +90,7 @@ export const searchUsers = async (token, username) => {
 export const resetAllBoxes = async (token) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/box-selection/set-all-boxes-to-unselected`,
+      `https://mystery-back.vercel.app/api/box-selection/set-all-boxes-to-unselected`,
       {
         method: "PUT",
         headers: {
@@ -109,7 +109,7 @@ export const resetAllBoxes = async (token) => {
 export const setBoxColor = async (token, color) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/box-selection/admin/set-box-color`,
+      `https://mystery-back.vercel.app/api/box-selection/admin/set-box-color`,
       {
         method: "PUT",
         headers: {
@@ -130,7 +130,7 @@ export const setBoxColor = async (token, color) => {
 export const getBoxColor = async (token) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/box-selection/box-color`,
+      `https://mystery-back.vercel.app/api/box-selection/box-color`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
