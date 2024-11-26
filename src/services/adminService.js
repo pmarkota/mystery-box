@@ -56,7 +56,7 @@ export const deleteUser = async (token, userId) => {
 
 export const updateUserCredits = async (token, userId, credits) => {
   try {
-    const response = await fetch(`${API_URL}/update-user-credits`, {
+    const response = await fetch(`${API_URL}/admin/update-user-credits`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
