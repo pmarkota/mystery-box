@@ -20,7 +20,7 @@ export const getAllUsers = async (token) => {
 
 export const createUser = async (token, userData) => {
   try {
-    const response = await fetch(`${API_URL}/create-user`, {
+    const response = await fetch(`${API_URL}/admin/create-user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export const createUser = async (token, userData) => {
 
 export const deleteUser = async (token, userId) => {
   try {
-    const response = await fetch(`${API_URL}/delete-user`, {
+    const response = await fetch(`${API_URL}/admin/delete-user`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
