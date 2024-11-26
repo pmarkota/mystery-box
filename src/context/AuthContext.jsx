@@ -94,6 +94,7 @@ export const AuthProvider = ({ children }) => {
       );
 
       const data = await response.json();
+      console.log(" ");
 
       if (!response.ok) {
         setError(data.error);
