@@ -2,11 +2,14 @@ const API_URL = "https://mystery-back.vercel.app/api/user-management";
 
 export const getAllUsers = async (token) => {
   try {
-    const response = await fetch(`${API_URL}/get-all-users`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `$https://mystery-back.vercel.app/api/admin/get-all-users`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const data = await response.json();
     if (!response.ok) throw new Error(data.error);
     return data.data;
