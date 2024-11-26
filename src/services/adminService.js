@@ -3,7 +3,7 @@ const API_URL = "https://mystery-back.vercel.app/api/user-management";
 export const getAllUsers = async (token) => {
   try {
     const response = await fetch(
-      `$https://mystery-back.vercel.app/api/admin/get-all-users`,
+      `https://mystery-back.vercel.app/api/admin/get-all-users`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
