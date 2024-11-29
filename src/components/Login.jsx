@@ -33,10 +33,15 @@ function Login() {
   }, [isAuthenticated, navigate]);
 
   useEffect(() => {
-    const supabase = createClient(
-      import.meta.env.VITE_SUPABASE_URL,
-      import.meta.env.VITE_SUPABASE_ANON_KEY
-    );
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.error("Supabase configuration is missing");
+      return;
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
     const fetchLoginText = async () => {
       try {
