@@ -405,31 +405,34 @@ function AdminDashboard() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {[
               {
+                id: "red",
+                name: "Ruby Glow",
+                style: `bg-gradient-to-br from-red-500 via-red-600 to-red-500 
+                        border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`,
+                preview: `bg-gradient-to-br from-red-500/30 via-red-600/20 to-red-500/30 
+                         border-yellow-500/40`,
+                description: "Royal & Bold",
+                ribbon: "border-yellow-500",
+              },
+              {
                 id: "green",
-                name: "Emerald Glow",
+                name: "Emerald Shine",
                 style: `bg-gradient-to-br from-[#43D277] via-[#43D277]/90 to-[#38b366] 
                         border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`,
                 preview: `bg-gradient-to-br from-[#43D277]/30 via-[#43D277]/20 to-[#38b366]/30 
                          border-[#43D277]/40`,
-                description: "Radiant & Energetic",
-              },
-              {
-                id: "black",
-                name: "Cosmic Noir",
-                style: `bg-gradient-to-br from-gray-900 via-black to-gray-800 
-                        border-gray-700/50 shadow-purple-900/30 hover:shadow-purple-900/40`,
-                preview: `bg-gradient-to-br from-gray-900/40 via-black/50 to-gray-800/40 
-                         border-gray-600/40`,
-                description: "Deep & Mysterious",
+                description: "Natural & Fresh",
+                ribbon: "border-[#43D277]",
               },
               {
                 id: "green-black",
-                name: "Aurora Fusion",
-                style: `bg-gradient-to-br from-[#43D277] via-gray-900 to-[#2C3E50] 
+                name: "Shadow Emerald",
+                style: `bg-gradient-to-br from-[#43D277] via-gray-900 to-black 
                         border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`,
-                preview: `bg-gradient-radial from-[#43D277]/30 via-gray-900/40 to-[#2C3E50]/30 
+                preview: `bg-gradient-to-br from-[#43D277]/30 via-gray-900/40 to-black/30 
                          border-[#43D277]/40`,
-                description: "Ethereal Blend",
+                description: "Mysterious & Elegant",
+                ribbon: "border-[#43D277]",
               },
             ].map((color) => (
               <motion.button

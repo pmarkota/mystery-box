@@ -155,22 +155,24 @@ function Home() {
     }
 
     switch (boxColor) {
+      case "red":
+        return `bg-gradient-to-br from-red-500 via-red-600 to-red-500 
+                border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30
+                after:content-[''] after:absolute after:top-0 after:left-1/2 
+                after:-translate-x-1/2 after:w-4 after:h-8 after:border-2 
+                after:border-yellow-500/50`;
       case "green":
-        return `relative bg-[#43D277]/90 border-[#43D277] 
-                after:absolute after:inset-0 after:rounded-xl
-                after:shadow-[0_0_15px_rgba(67,210,119,0.3)]
-                hover:after:shadow-[0_0_20px_rgba(67,210,119,0.4)]
-                transition-all duration-300`;
-      case "black":
-        return `relative bg-gradient-to-br from-black to-gray-900
-                border-gray-800 shadow-lg shadow-black/50
-                hover:shadow-black/70 hover:from-gray-900 hover:to-black
-                transition-all duration-300`;
+        return `bg-gradient-to-br from-[#43D277] via-[#43D277]/90 to-[#38b366] 
+                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30
+                after:content-[''] after:absolute after:top-0 after:left-1/2 
+                after:-translate-x-1/2 after:w-4 after:h-8 after:border-2 
+                after:border-[#43D277]/50`;
       case "green-black":
-        return `relative bg-gradient-to-br from-[#43D277]/80 to-black
-                border-[#43D277]/50 shadow-lg shadow-[#43D277]/20
-                hover:shadow-[#43D277]/30
-                transition-all duration-300`;
+        return `bg-gradient-to-br from-[#43D277] via-gray-900 to-black 
+                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30
+                after:content-[''] after:absolute after:top-0 after:left-1/2 
+                after:-translate-x-1/2 after:w-4 after:h-8 after:border-2 
+                after:border-[#43D277]/50`;
       default:
         return "bg-white/5 border-white/10";
     }
@@ -270,63 +272,38 @@ function Home() {
                       !selectedBoxes.includes(box.id))
                   }
                   className={`
-                    relative aspect-square rounded-xl transition-colors duration-300
+                    relative aspect-square rounded-xl transition-all duration-300
                     ${getBoxStyles(box)}
-                    border-2
-                    overflow-hidden
+                    border-2 overflow-visible
                   `}
                 >
                   {/* Box Content */}
-                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
-                    <motion.span
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span
                       className={`text-2xl ${
                         box.selected_by ? "opacity-50" : ""
                       }`}
-                      whileHover={{
-                        scale: 1.2,
-                        transition: { duration: 0.2 },
-                      }}
                     >
                       {box.selected_by
                         ? "🔒"
                         : selectedBoxes.includes(box.id)
                         ? "✨"
                         : "🎁"}
-                    </motion.span>
-                    <motion.span
+                    </span>
+                    <span
                       className={`text-sm mt-2
-                        ${
-                          box.selected_by
-                            ? "text-gray-500"
-                            : selectedBoxes.includes(box.id)
-                            ? "text-white"
-                            : boxColor === "black"
-                            ? "text-gray-300"
-                            : "text-white"
-                        }`}
-                      whileHover={{
-                        y: -2,
-                        transition: { duration: 0.2 },
-                      }}
+                      ${box.selected_by ? "text-gray-500" : "text-white"}`}
                     >
                       #{box.id}
-                    </motion.span>
+                    </span>
                   </div>
-
-                  {/* Add hover glow effect */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute inset-0 pointer-events-none bg-white/5"
-                  />
 
                   {/* Selection Indicator */}
                   {selectedBoxes.includes(box.id) && (
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="absolute z-20 w-6 h-6 -top-2 -right-2"
+                      className="absolute -top-2 -right-2 w-6 h-6 z-20"
                     >
                       <div className="absolute inset-0 rounded-full bg-[#43D277]">
                         <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-black">

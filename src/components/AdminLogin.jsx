@@ -178,17 +178,6 @@ function AdminLogin() {
                 </motion.span>
               </motion.button>
             </motion.div>
-
-            {/* Back to user login link */}
-            <motion.div variants={itemVariants} className="text-center mt-4">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                href="/login"
-                className="text-sm text-[#43D277]/80 hover:text-[#43D277] transition-colors"
-              >
-                ← Back to User Login
-              </motion.a>
-            </motion.div>
           </form>
         </div>
       </motion.div>
