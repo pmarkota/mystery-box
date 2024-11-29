@@ -23,12 +23,12 @@ const RibbonSvg = ({ color }) => (
     <path
       d="M16 0L32 16L16 32L0 16L16 0Z"
       fill={color}
-      fillOpacity="0.8"
+      fillOpacity="0.9"
     />
     <path
       d="M16 32L24 48L16 40L8 48L16 32Z"
       fill={color}
-      fillOpacity="0.8"
+      fillOpacity="0.9"
     />
   </svg>
 );
@@ -484,7 +484,7 @@ function AdminDashboard() {
                       color={
                         color.id === "green" 
                           ? "#FFD700" // Gold ribbon for red box
-                          : "#43D277" // Green ribbon for other boxes
+                          : "#2EA55C" // Darker green ribbon (#2EA55C instead of #43D277)
                       }
                     />
                     <div
@@ -502,9 +502,7 @@ function AdminDashboard() {
                     />
 
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl transition-transform duration-300 transform group-hover:scale-110">
-                        🎁
-                      </span>
+                      {/* Remove the gift emoji span entirely */}
                     </div>
                   </div>
                 </div>

@@ -20,12 +20,12 @@ const RibbonSvg = ({ color }) => (
     <path
       d="M16 0L32 16L16 32L0 16L16 0Z"
       fill={color}
-      fillOpacity="0.8"
+      fillOpacity="0.9"
     />
     <path
       d="M16 32L24 48L16 40L8 48L16 32Z"
       fill={color}
-      fillOpacity="0.8"
+      fillOpacity="0.9"
     />
   </svg>
 );
@@ -295,9 +295,7 @@ function Home() {
                         color={
                           boxColor === "green" 
                             ? "#FFD700" // Gold for red boxes (which use the "green" backend value)
-                            : boxColor === "black"
-                            ? "#43D277" // Green for green boxes (which use the "black" backend value)
-                            : "#43D277" // Green for green/black boxes
+                            : "#2EA55C" // Darker green (#2EA55C instead of #43D277)
                         }
                       />
                     )}
