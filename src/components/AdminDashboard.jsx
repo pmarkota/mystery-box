@@ -43,7 +43,6 @@ function AdminDashboard() {
   const [newUser, setNewUser] = useState({
     username: "",
     password: "",
-    email: "",
     credits: 0,
   });
   const [successMessage, setSuccessMessage] = useState("");
@@ -109,7 +108,7 @@ function AdminDashboard() {
       await createUser(token, newUser);
       setSuccessMessage("User created successfully!");
       setShowCreateModal(false);
-      setNewUser({ username: "", password: "", email: "", credits: 0 });
+      setNewUser({ username: "", password: "", credits: 0 });
       await loadUsers();
     } catch (err) {
       setError("Failed to create user");
@@ -587,20 +586,6 @@ function AdminDashboard() {
                       value={newUser.password}
                       onChange={(e) =>
                         setNewUser({ ...newUser, password: e.target.value })
-                      }
-                      className="w-full px-4 py-2 text-white border rounded-xl bg-black/30 border-[#43D277]/20 focus:border-[#43D277]/50 focus:ring-2 focus:ring-[#43D277]/20"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block mb-1 text-sm text-[#43D277]/80">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={newUser.email}
-                      onChange={(e) =>
-                        setNewUser({ ...newUser, email: e.target.value })
                       }
                       className="w-full px-4 py-2 text-white border rounded-xl bg-black/30 border-[#43D277]/20 focus:border-[#43D277]/50 focus:ring-2 focus:ring-[#43D277]/20"
                       required
