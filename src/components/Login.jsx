@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
+import { createClient } from "supabase-js";
+
 function Login() {
   const { login, error, isAuthenticated } = useAuth();
 
@@ -17,11 +19,74 @@ function Login() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [loginText, setLoginText] = useState({
+    login_welcome_text: "Welcome back",
+    login_username_label: "Username",
+    login_password_label: "Password",
+    login_button_text: "Sign In",
+  });
+
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/");
     }
   }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    const supabase = createClient(
+      import.meta.env.VITE_SUPABASE_URL,
+      import.meta.env.VITE_SUPABASE_ANON_KEY
+    );
+
+    const fetchLoginText = async () => {
+      try {
+        const { data } = await supabase
+          .from("global_settings")
+          .select("setting_name, setting_value")
+          .in("setting_name", [
+            "login_welcome_text",
+            "login_username_label",
+            "login_password_label",
+            "login_button_text",
+          ]);
+
+        const textSettings = data.reduce((acc, item) => {
+          acc[item.setting_name] = item.setting_value;
+          return acc;
+        }, {});
+
+        setLoginText(textSettings);
+      } catch (error) {
+        console.error("Error fetching login text:", error);
+      }
+    };
+
+    fetchLoginText();
+
+    const subscription = supabase
+      .channel("global_settings_changes")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "global_settings",
+        },
+        (payload) => {
+          if (payload.new) {
+            setLoginText((prev) => ({
+              ...prev,
+              [payload.new.setting_name]: payload.new.setting_value,
+            }));
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,7 +175,7 @@ function Login() {
           <motion.div variants={itemVariants} className="mb-8">
             <h2 className="text-4xl font-bold text-center">
               <span className="bg-gradient-to-r from-[#43D277] via-white to-[#43D277] bg-clip-text text-transparent">
-                Welcome Back
+                {loginText.login_welcome_text}
               </span>
             </h2>
 
@@ -139,7 +204,7 @@ function Login() {
                 className="block text-[#43D277] text-sm font-medium mb-2"
                 htmlFor="username"
               >
-                Username
+                {loginText.login_username_label}
               </motion.label>
 
               <motion.input
@@ -162,7 +227,7 @@ function Login() {
                 className="block text-[#43D277] text-sm font-medium mb-2"
                 htmlFor="password"
               >
-                Password
+                {loginText.login_password_label}
               </motion.label>
 
               <motion.input
@@ -196,7 +261,7 @@ function Login() {
                   animate={isLoading ? { opacity: [1, 0.7, 1] } : {}}
                   transition={{ duration: 1, repeat: Infinity }}
                 >
-                  {isLoading ? "Signing in..." : "Sign In"}
+                  {isLoading ? "Signing in..." : loginText.login_button_text}
                 </motion.span>
               </motion.button>
             </motion.div>

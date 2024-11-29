@@ -147,3 +147,42 @@ export const getBoxColor = async (token) => {
     throw new Error("Failed to fetch box color");
   }
 };
+
+export const getLoginText = async (token) => {
+  try {
+    const response = await fetch(
+      `https://mystery-back.vercel.app/api/box-selection/login-text`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error);
+    return data.data;
+  } catch (error) {
+    throw new Error("Failed to fetch login text");
+  }
+};
+
+export const updateLoginText = async (token, settings) => {
+  try {
+    const response = await fetch(
+      `https://mystery-back.vercel.app/api/box-selection/admin/login-text`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ settings }),
+      }
+    );
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error);
+    return data.data;
+  } catch (error) {
+    throw new Error("Failed to update login text");
+  }
+};

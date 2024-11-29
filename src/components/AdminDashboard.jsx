@@ -10,6 +10,8 @@ import {
   resetAllBoxes,
   setBoxColor,
   getBoxColor,
+  getLoginText,
+  updateLoginText,
 } from "../services/adminService";
 import { useNavigate } from "react-router-dom";
 
@@ -20,16 +22,8 @@ const RibbonSvg = ({ color }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M16 0L32 16L16 32L0 16L16 0Z"
-      fill={color}
-      fillOpacity="0.9"
-    />
-    <path
-      d="M16 32L24 48L16 40L8 48L16 32Z"
-      fill={color}
-      fillOpacity="0.9"
-    />
+    <path d="M16 0L32 16L16 32L0 16L16 0Z" fill={color} fillOpacity="0.9" />
+    <path d="M16 32L24 48L16 40L8 48L16 32Z" fill={color} fillOpacity="0.9" />
   </svg>
 );
 
@@ -51,16 +45,25 @@ function AdminDashboard() {
   const [isResetting, setIsResetting] = useState(false);
   const [currentBoxColor, setCurrentBoxColor] = useState("green");
   const [isUpdatingColor, setIsUpdatingColor] = useState(false);
+  const [loginText, setLoginText] = useState({
+    login_welcome_text: "Welcome back",
+    login_username_label: "Username",
+    login_password_label: "Password",
+    login_button_text: "Sign In",
+  });
+  const [isEditingText, setIsEditingText] = useState(false);
 
   useEffect(() => {
     const loadInitialData = async () => {
       try {
-        const [usersData, colorData] = await Promise.all([
+        const [usersData, colorData, textData] = await Promise.all([
           getAllUsers(token),
           getBoxColor(token),
+          getLoginText(token),
         ]);
         setUsers(usersData);
         setCurrentBoxColor(colorData);
+        setLoginText(textData);
       } catch (err) {
         setError("Failed to load initial data");
       }
@@ -112,9 +115,9 @@ function AdminDashboard() {
     try {
       const userDataWithEmail = {
         ...newUser,
-        email: generateRandomEmail(newUser.username)
+        email: generateRandomEmail(newUser.username),
       };
-      
+
       await createUser(token, userDataWithEmail);
       setSuccessMessage("User created successfully!");
       setShowCreateModal(false);
@@ -191,6 +194,19 @@ function AdminDashboard() {
   const handleLogout = () => {
     logout();
     navigate("/admin/login");
+  };
+
+  const handleLoginTextUpdate = async () => {
+    setIsEditingText(true);
+    try {
+      const updatedText = await updateLoginText(token, loginText);
+      setLoginText(updatedText);
+      setSuccessMessage("Login text updated successfully!");
+    } catch (err) {
+      setError("Failed to update login text");
+    } finally {
+      setIsEditingText(false);
+    }
   };
 
   return (
@@ -489,9 +505,9 @@ function AdminDashboard() {
                     relative overflow-hidden group
                   `}
                   >
-                    <RibbonSvg 
+                    <RibbonSvg
                       color={
-                        color.id === "green" 
+                        color.id === "green"
                           ? "#FFD700" // Gold ribbon for red box
                           : "#2EA55C" // Darker green ribbon (#2EA55C instead of #43D277)
                       }
@@ -553,6 +569,50 @@ function AdminDashboard() {
             Select a color scheme for all mystery boxes. Each theme provides a
             unique visual experience for users.
           </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="p-8 mt-8 border backdrop-blur-xl rounded-3xl border-white/10 bg-white/5"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-transparent bg-gradient-to-r from-[#43D277] to-[#38b366] bg-clip-text">
+            Login Page Text
+          </h2>
+
+          <div className="grid gap-6">
+            {Object.entries(loginText).map(([key, value]) => (
+              <div key={key} className="space-y-2">
+                <label className="block text-sm text-[#43D277]/80">
+                  {key
+                    .split("_")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
+                </label>
+                <input
+                  type="text"
+                  value={value}
+                  onChange={(e) =>
+                    setLoginText((prev) => ({
+                      ...prev,
+                      [key]: e.target.value,
+                    }))
+                  }
+                  className="w-full px-4 py-2 text-white border rounded-xl bg-black/30 border-[#43D277]/20 focus:border-[#43D277]/50 focus:ring-2 focus:ring-[#43D277]/20"
+                />
+              </div>
+            ))}
+
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={handleLoginTextUpdate}
+              disabled={isEditingText}
+              className="px-6 py-3 text-white bg-gradient-to-r from-[#43D277] to-[#38b366] rounded-xl hover:shadow-lg hover:shadow-[#43D277]/20"
+            >
+              {isEditingText ? "Updating..." : "Update Login Text"}
+            </motion.button>
+          </div>
         </motion.div>
 
         <AnimatePresence>
