@@ -10,6 +10,26 @@ import { fetchBoxes, submitBoxes, getBoxColor } from "../services/boxService";
 
 import Particles from "./Particles";
 
+const RibbonSvg = ({ color }) => (
+  <svg
+    className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-12"
+    viewBox="0 0 32 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M16 0L32 16L16 32L0 16L16 0Z"
+      fill={color}
+      fillOpacity="0.3"
+    />
+    <path
+      d="M16 32L24 48L16 40L8 48L16 32Z"
+      fill={color}
+      fillOpacity="0.3"
+    />
+  </svg>
+);
+
 function Home() {
   const { user, token, refreshUserData } = useAuth();
 
@@ -279,16 +299,23 @@ function Home() {
                 >
                   {/* Box Content */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span
-                      className={`text-2xl ${
-                        box.selected_by ? "opacity-50" : ""
-                      }`}
-                    >
+                    {!box.selected_by && !selectedBoxes.includes(box.id) && (
+                      <RibbonSvg 
+                        color={
+                          boxColor === "green" 
+                            ? "#FFD700" // Gold for red boxes (which use the "green" backend value)
+                            : boxColor === "black"
+                            ? "#43D277" // Green for green boxes (which use the "black" backend value)
+                            : "#43D277" // Green for green/black boxes
+                        }
+                      />
+                    )}
+                    <span className={`text-2xl ${box.selected_by ? "opacity-50" : ""}`}>
                       {box.selected_by
                         ? "🔒"
                         : selectedBoxes.includes(box.id)
                         ? "✨"
-                        : "🎁"}
+                        : ""}
                     </span>
                     <span
                       className={`text-sm mt-2
