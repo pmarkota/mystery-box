@@ -155,13 +155,13 @@ function Home() {
     }
 
     switch (boxColor) {
-      case "red":
+      case "green":
         return `bg-gradient-to-br from-red-500 via-red-600 to-red-500 
                 border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30
                 after:content-[''] after:absolute after:top-0 after:left-1/2 
                 after:-translate-x-1/2 after:w-4 after:h-8 after:border-2 
                 after:border-yellow-500/50`;
-      case "green":
+      case "black":
         return `bg-gradient-to-br from-[#43D277] via-[#43D277]/90 to-[#38b366] 
                 border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30
                 after:content-[''] after:absolute after:top-0 after:left-1/2 

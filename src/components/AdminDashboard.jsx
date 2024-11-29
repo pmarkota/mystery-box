@@ -405,7 +405,7 @@ function AdminDashboard() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {[
               {
-                id: "red",
+                id: "green",
                 name: "Ruby Glow",
                 style: `bg-gradient-to-br from-red-500 via-red-600 to-red-500 
                         border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`,
@@ -415,7 +415,7 @@ function AdminDashboard() {
                 ribbon: "border-yellow-500",
               },
               {
-                id: "green",
+                id: "black",
                 name: "Emerald Shine",
                 style: `bg-gradient-to-br from-[#43D277] via-[#43D277]/90 to-[#38b366] 
                         border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`,
