@@ -49,7 +49,7 @@ function AdminLogin() {
   };
 
   return (
-    <div className="absolute inset-0 min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+    <div className="absolute inset-0 flex items-center justify-center w-full min-h-screen overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Animated background elements */}
       {[...Array(6)].map((_, i) => (
         <motion.div
@@ -83,10 +83,10 @@ function AdminLogin() {
             animate={{ scale: 1 }}
             className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#43D277] to-[#38b366] px-4 py-1 rounded-full"
           >
-            <span className="text-black text-sm font-medium">Admin Portal</span>
+            <span className="text-sm font-medium text-black">Admin Portal</span>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="mb-8 mt-4">
+          <motion.div variants={itemVariants} className="mt-4 mb-8">
             <h2 className="text-4xl font-bold text-center">
               <span className="bg-gradient-to-r from-[#43D277] via-white to-[#43D277] bg-clip-text text-transparent">
                 Administrator Access
@@ -105,7 +105,7 @@ function AdminLogin() {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                className="mb-6 p-4 bg-red-500/10 backdrop-blur-sm border border-red-500/30 rounded-xl text-red-200 text-sm"
+                className="p-4 mb-6 text-sm text-red-200 border bg-red-500/10 backdrop-blur-sm border-red-500/30 rounded-xl"
               >
                 {error}
               </motion.div>
@@ -119,7 +119,7 @@ function AdminLogin() {
                 className="block text-[#43D277] text-sm font-medium mb-2"
                 htmlFor="username"
               >
-                Admin Username
+                Admin Username:
               </motion.label>
               <motion.input
                 whileFocus={{ scale: 1.01 }}
@@ -141,7 +141,7 @@ function AdminLogin() {
                 className="block text-[#43D277] text-sm font-medium mb-2"
                 htmlFor="password"
               >
-                Admin Password
+                Admin Password:
               </motion.label>
               <motion.input
                 whileFocus={{ scale: 1.01 }}
