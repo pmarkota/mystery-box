@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
-import { createClient } from "supabase-js";
+import { createClient } from "@supabase/supabase-js";
 
 function Login() {
   const { login, error, isAuthenticated } = useAuth();
