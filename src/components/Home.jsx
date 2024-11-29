@@ -12,7 +12,7 @@ import Particles from "./Particles";
 
 const RibbonSvg = ({ color }) => (
   <svg
-    className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-12"
+    className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-12 z-10"
     viewBox="0 0 32 48"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -20,12 +20,12 @@ const RibbonSvg = ({ color }) => (
     <path
       d="M16 0L32 16L16 32L0 16L16 0Z"
       fill={color}
-      fillOpacity="0.3"
+      fillOpacity="0.8"
     />
     <path
       d="M16 32L24 48L16 40L8 48L16 32Z"
       fill={color}
-      fillOpacity="0.3"
+      fillOpacity="0.8"
     />
   </svg>
 );
@@ -177,22 +177,13 @@ function Home() {
     switch (boxColor) {
       case "green":
         return `bg-gradient-to-br from-red-500 via-red-600 to-red-500 
-                border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30
-                after:content-[''] after:absolute after:top-0 after:left-1/2 
-                after:-translate-x-1/2 after:w-4 after:h-8 after:border-2 
-                after:border-yellow-500/50`;
+                border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`;
       case "black":
         return `bg-gradient-to-br from-[#43D277] via-[#43D277]/90 to-[#38b366] 
-                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30
-                after:content-[''] after:absolute after:top-0 after:left-1/2 
-                after:-translate-x-1/2 after:w-4 after:h-8 after:border-2 
-                after:border-[#43D277]/50`;
+                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
       case "green-black":
         return `bg-gradient-to-br from-[#43D277] via-gray-900 to-black 
-                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30
-                after:content-[''] after:absolute after:top-0 after:left-1/2 
-                after:-translate-x-1/2 after:w-4 after:h-8 after:border-2 
-                after:border-[#43D277]/50`;
+                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
       default:
         return "bg-white/5 border-white/10";
     }

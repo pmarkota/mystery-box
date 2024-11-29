@@ -13,6 +13,26 @@ import {
 } from "../services/adminService";
 import { useNavigate } from "react-router-dom";
 
+const RibbonSvg = ({ color }) => (
+  <svg
+    className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-12 z-10"
+    viewBox="0 0 32 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M16 0L32 16L16 32L0 16L16 0Z"
+      fill={color}
+      fillOpacity="0.8"
+    />
+    <path
+      d="M16 32L24 48L16 40L8 48L16 32Z"
+      fill={color}
+      fillOpacity="0.8"
+    />
+  </svg>
+);
+
 function AdminDashboard() {
   const { token, logout } = useAuth();
   const navigate = useNavigate();
@@ -460,6 +480,13 @@ function AdminDashboard() {
                     relative overflow-hidden group
                   `}
                   >
+                    <RibbonSvg 
+                      color={
+                        color.id === "green" 
+                          ? "#FFD700" // Gold ribbon for red box
+                          : "#43D277" // Green ribbon for other boxes
+                      }
+                    />
                     <div
                       className={`
                       absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
