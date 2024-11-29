@@ -101,11 +101,21 @@ function AdminDashboard() {
     }
   };
 
+  const generateRandomEmail = (username) => {
+    const timestamp = Date.now();
+    return `${username.toLowerCase()}_${timestamp}@mysterybox.com`;
+  };
+
   const handleCreateUser = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await createUser(token, newUser);
+      const userDataWithEmail = {
+        ...newUser,
+        email: generateRandomEmail(newUser.username)
+      };
+      
+      await createUser(token, userDataWithEmail);
       setSuccessMessage("User created successfully!");
       setShowCreateModal(false);
       setNewUser({ username: "", password: "", credits: 0 });
