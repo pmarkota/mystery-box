@@ -14,6 +14,10 @@ import {
   updateLoginText,
 } from "../services/adminService";
 import { useNavigate } from "react-router-dom";
+// Import the box images
+import redBox from "@assets/BOX DESIGNS-01.png";
+import greenBox from "@assets/BOX DESIGNS-02.png";
+import greenBlackBox from "@assets/BOX DESIGNS-03.png";
 
 const RibbonSvg = ({ color }) => (
   <svg
@@ -209,14 +213,41 @@ function AdminDashboard() {
     }
   };
 
+  const colorOptions = [
+    {
+      id: "green",
+      name: "Ruby Glow",
+      style: `bg-[url(${redBox})] bg-cover bg-center`,
+      preview: `bg-[url(${redBox})] bg-cover bg-center`,
+      description: "Royal & Bold",
+      ribbon: "border-yellow-500",
+    },
+    {
+      id: "black",
+      name: "Emerald Shine",
+      style: `bg-[url(${greenBox})] bg-cover bg-center`,
+      preview: `bg-[url(${greenBox})] bg-cover bg-center`,
+      description: "Natural & Fresh",
+      ribbon: "border-[#43D277]",
+    },
+    {
+      id: "green-black",
+      name: "Shadow Emerald",
+      style: `bg-[url(${greenBlackBox})] bg-cover bg-center`,
+      preview: `bg-[url(${greenBlackBox})] bg-cover bg-center`,
+      description: "Mysterious & Elegant",
+      ribbon: "border-[#43D277]",
+    },
+  ];
+
   const getPreviewBoxStyles = (color) => {
     switch (color.id) {
       case "green":
-        return "bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center";
+        return `bg-[url(${redBox})] bg-cover bg-center`;
       case "black":
-        return "bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center";
+        return `bg-[url(${greenBox})] bg-cover bg-center`;
       case "green-black":
-        return "bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center";
+        return `bg-[url(${greenBlackBox})] bg-cover bg-center`;
       default:
         return "bg-white/5";
     }
@@ -461,35 +492,7 @@ function AdminDashboard() {
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {[
-              {
-                id: "green",
-                name: "Ruby Glow",
-                style: `bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center 
-                        border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`,
-                preview: `bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center opacity-30`,
-                description: "Royal & Bold",
-                ribbon: "border-yellow-500",
-              },
-              {
-                id: "black",
-                name: "Emerald Shine",
-                style: `bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center 
-                        border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`,
-                preview: `bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center opacity-30`,
-                description: "Natural & Fresh",
-                ribbon: "border-[#43D277]",
-              },
-              {
-                id: "green-black",
-                name: "Shadow Emerald",
-                style: `bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center 
-                        border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`,
-                preview: `bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center opacity-30`,
-                description: "Mysterious & Elegant",
-                ribbon: "border-[#43D277]",
-              },
-            ].map((color) => (
+            {colorOptions.map((color) => (
               <motion.button
                 key={color.id}
                 whileHover={{ scale: 1.02, y: -2 }}

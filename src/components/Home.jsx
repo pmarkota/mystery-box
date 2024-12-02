@@ -10,6 +10,10 @@ import { fetchBoxes, submitBoxes, getBoxColor } from "../services/boxService";
 
 import Particles from "./Particles";
 
+import redBox from "@assets/BOX DESIGNS-01.png";
+import greenBox from "@assets/BOX DESIGNS-02.png";
+import greenBlackBox from "@assets/BOX DESIGNS-03.png";
+
 const RibbonSvg = ({ color }) => (
   <svg
     className="absolute top-0 z-10 w-8 h-12 -translate-x-1/2 left-1/2"
@@ -163,19 +167,16 @@ function Home() {
     }
 
     if (selectedBoxes.includes(box.id)) {
-      return "bg-[#43D277] border-[#43D277] shadow-lg shadow-[#43D277]/30";
+      return `bg-[url(${greenBox})] bg-cover bg-center border-[#43D277] shadow-lg shadow-[#43D277]/30`;
     }
 
     switch (boxColor) {
       case "green":
-        return `bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center 
-                border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`;
+        return `bg-[url(${redBox})] bg-cover bg-center border-yellow-500/50`;
       case "black":
-        return `bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center 
-                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
+        return `bg-[url(${greenBox})] bg-cover bg-center border-[#43D277]/50`;
       case "green-black":
-        return `bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center 
-                border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
+        return `bg-[url(${greenBlackBox})] bg-cover bg-center border-[#43D277]/50`;
       default:
         return "bg-white/5 border-white/10";
     }
