@@ -204,24 +204,48 @@ function AdminDashboard() {
     {
       id: "green",
       name: "Ruby Glow",
-      style: `background-image: url(${redBox}); background-size: cover; background-position: center;`,
-      preview: `background-image: url(${redBox}); background-size: cover; background-position: center;`,
+      style: {
+        backgroundImage: `url(${redBox})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      },
+      preview: {
+        backgroundImage: `url(${redBox})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      },
       description: "Royal & Bold",
       ribbon: "border-yellow-500",
     },
     {
       id: "black",
       name: "Emerald Shine",
-      style: `background-image: url(${greenBox}); background-size: cover; background-position: center;`,
-      preview: `background-image: url(${greenBox}); background-size: cover; background-position: center;`,
+      style: {
+        backgroundImage: `url(${greenBox})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      },
+      preview: {
+        backgroundImage: `url(${greenBox})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      },
       description: "Natural & Fresh",
       ribbon: "border-[#43D277]",
     },
     {
       id: "green-black",
       name: "Shadow Emerald",
-      style: `background-image: url(${greenBlackBox}); background-size: cover; background-position: center;`,
-      preview: `background-image: url(${greenBlackBox}); background-size: cover; background-position: center;`,
+      style: {
+        backgroundImage: `url(${greenBlackBox})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      },
+      preview: {
+        backgroundImage: `url(${greenBlackBox})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      },
       description: "Mysterious & Elegant",
       ribbon: "border-[#43D277]",
     },
@@ -230,13 +254,27 @@ function AdminDashboard() {
   const getPreviewBoxStyles = (color) => {
     switch (color.id) {
       case "green":
-        return `background-image: url(${redBox}); background-size: cover; background-position: center;`;
+        return {
+          backgroundImage: `url(${redBox})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        };
       case "black":
-        return `background-image: url(${greenBox}); background-size: cover; background-position: center;`;
+        return {
+          backgroundImage: `url(${greenBox})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        };
       case "green-black":
-        return `background-image: url(${greenBlackBox}); background-size: cover; background-position: center;`;
+        return {
+          backgroundImage: `url(${greenBlackBox})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        };
       default:
-        return "bg-white/5";
+        return {
+          backgroundColor: "rgba(255, 255, 255, 0.05)",
+        };
     }
   };
 
