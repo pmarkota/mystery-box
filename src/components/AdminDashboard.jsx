@@ -15,9 +15,9 @@ import {
 } from "../services/adminService";
 import { useNavigate } from "react-router-dom";
 // Import the box images
-import redBox from "@assets/BOX DESIGNS-01.png";
-import greenBox from "@assets/BOX DESIGNS-02.png";
-import greenBlackBox from "@assets/BOX DESIGNS-03.png";
+import redBox from "../assets/BOX DESIGNS-01.png";
+import greenBox from "../assets/BOX DESIGNS-02.png";
+import greenBlackBox from "../assets/BOX DESIGNS-03.png";
 
 const RibbonSvg = ({ color }) => (
   <svg
@@ -217,24 +217,24 @@ function AdminDashboard() {
     {
       id: "green",
       name: "Ruby Glow",
-      style: `bg-[url(${redBox})] bg-cover bg-center`,
-      preview: `bg-[url(${redBox})] bg-cover bg-center`,
+      style: `background-image: url(${redBox}); background-size: cover; background-position: center;`,
+      preview: `background-image: url(${redBox}); background-size: cover; background-position: center;`,
       description: "Royal & Bold",
       ribbon: "border-yellow-500",
     },
     {
       id: "black",
       name: "Emerald Shine",
-      style: `bg-[url(${greenBox})] bg-cover bg-center`,
-      preview: `bg-[url(${greenBox})] bg-cover bg-center`,
+      style: `background-image: url(${greenBox}); background-size: cover; background-position: center;`,
+      preview: `background-image: url(${greenBox}); background-size: cover; background-position: center;`,
       description: "Natural & Fresh",
       ribbon: "border-[#43D277]",
     },
     {
       id: "green-black",
       name: "Shadow Emerald",
-      style: `bg-[url(${greenBlackBox})] bg-cover bg-center`,
-      preview: `bg-[url(${greenBlackBox})] bg-cover bg-center`,
+      style: `background-image: url(${greenBlackBox}); background-size: cover; background-position: center;`,
+      preview: `background-image: url(${greenBlackBox}); background-size: cover; background-position: center;`,
       description: "Mysterious & Elegant",
       ribbon: "border-[#43D277]",
     },
@@ -243,11 +243,11 @@ function AdminDashboard() {
   const getPreviewBoxStyles = (color) => {
     switch (color.id) {
       case "green":
-        return `bg-[url(${redBox})] bg-cover bg-center`;
+        return `background-image: url(${redBox}); background-size: cover; background-position: center;`;
       case "black":
-        return `bg-[url(${greenBox})] bg-cover bg-center`;
+        return `background-image: url(${greenBox}); background-size: cover; background-position: center;`;
       case "green-black":
-        return `bg-[url(${greenBlackBox})] bg-cover bg-center`;
+        return `background-image: url(${greenBlackBox}); background-size: cover; background-position: center;`;
       default:
         return "bg-white/5";
     }
