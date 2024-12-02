@@ -212,11 +212,11 @@ function AdminDashboard() {
   const getPreviewBoxStyles = (color) => {
     switch (color.id) {
       case "green":
-        return "bg-[url('/assets/red-box.png')] bg-cover bg-center";
+        return "bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center";
       case "black":
-        return "bg-[url('/assets/green-box.png')] bg-cover bg-center";
+        return "bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center";
       case "green-black":
-        return "bg-[url('/assets/green-black-box.png')] bg-cover bg-center";
+        return "bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center";
       default:
         return "bg-white/5";
     }
@@ -465,30 +465,27 @@ function AdminDashboard() {
               {
                 id: "green",
                 name: "Ruby Glow",
-                style: `bg-gradient-to-br from-red-500 via-red-600 to-red-500 
+                style: `bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center 
                         border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`,
-                preview: `bg-gradient-to-br from-red-500/30 via-red-600/20 to-red-500/30 
-                         border-yellow-500/40`,
+                preview: `bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center opacity-30`,
                 description: "Royal & Bold",
                 ribbon: "border-yellow-500",
               },
               {
                 id: "black",
                 name: "Emerald Shine",
-                style: `bg-gradient-to-br from-[#43D277] via-[#43D277]/90 to-[#38b366] 
+                style: `bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center 
                         border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`,
-                preview: `bg-gradient-to-br from-[#43D277]/30 via-[#43D277]/20 to-[#38b366]/30 
-                         border-[#43D277]/40`,
+                preview: `bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center opacity-30`,
                 description: "Natural & Fresh",
                 ribbon: "border-[#43D277]",
               },
               {
                 id: "green-black",
                 name: "Shadow Emerald",
-                style: `bg-gradient-to-br from-[#43D277] via-gray-900 to-black 
+                style: `bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center 
                         border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`,
-                preview: `bg-gradient-to-br from-[#43D277]/30 via-gray-900/40 to-black/30 
-                         border-[#43D277]/40`,
+                preview: `bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center opacity-30`,
                 description: "Mysterious & Elegant",
                 ribbon: "border-[#43D277]",
               },

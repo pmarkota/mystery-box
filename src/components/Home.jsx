@@ -159,34 +159,34 @@ function Home() {
 
   const getBoxStyles = (box) => {
     if (box.selected_by) {
-      return "bg-black/50 border-gray-700/50 cursor-not-allowed bg-cover bg-center";
+      return "bg-black/50 border-gray-700/50 cursor-not-allowed";
     }
 
     if (selectedBoxes.includes(box.id)) {
-      return "bg-[#43D277] border-[#43D277] shadow-lg shadow-[#43D277]/30 bg-cover bg-center";
+      return "bg-[#43D277] border-[#43D277] shadow-lg shadow-[#43D277]/30";
     }
 
     switch (boxColor) {
       case "green":
-        return `bg-[url('/assets/red-box.png')] bg-cover bg-center 
+        return `bg-[url('@assets/BOX DESIGNS-01.png')] bg-cover bg-center 
                 border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`;
       case "black":
-        return `bg-[url('/assets/green-box.png')] bg-cover bg-center 
+        return `bg-[url('@assets/BOX DESIGNS-02.png')] bg-cover bg-center 
                 border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
       case "green-black":
-        return `bg-[url('/assets/green-black-box.png')] bg-cover bg-center 
+        return `bg-[url('@assets/BOX DESIGNS-03.png')] bg-cover bg-center 
                 border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
       default:
-        return "bg-white/5 border-white/10 bg-cover bg-center";
+        return "bg-white/5 border-white/10";
     }
   };
 
   useEffect(() => {
     // Preload images
     const images = [
-      "/assets/red-box.png",
-      "/assets/green-box.png",
-      "/assets/green-black-box.png",
+      "@assets/BOX DESIGNS-01.png",
+      "@assets/BOX DESIGNS-02.png",
+      "@assets/BOX DESIGNS-03.png",
     ];
 
     images.forEach((src) => {
