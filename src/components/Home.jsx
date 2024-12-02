@@ -12,21 +12,13 @@ import Particles from "./Particles";
 
 const RibbonSvg = ({ color }) => (
   <svg
-    className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-12 z-10"
+    className="absolute top-0 z-10 w-8 h-12 -translate-x-1/2 left-1/2"
     viewBox="0 0 32 48"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M16 0L32 16L16 32L0 16L16 0Z"
-      fill={color}
-      fillOpacity="0.9"
-    />
-    <path
-      d="M16 32L24 48L16 40L8 48L16 32Z"
-      fill={color}
-      fillOpacity="0.9"
-    />
+    <path d="M16 0L32 16L16 32L0 16L16 0Z" fill={color} fillOpacity="0.9" />
+    <path d="M16 32L24 48L16 40L8 48L16 32Z" fill={color} fillOpacity="0.9" />
   </svg>
 );
 
@@ -167,27 +159,41 @@ function Home() {
 
   const getBoxStyles = (box) => {
     if (box.selected_by) {
-      return "bg-black/50 border-gray-700/50 cursor-not-allowed";
+      return "bg-black/50 border-gray-700/50 cursor-not-allowed bg-cover bg-center";
     }
 
     if (selectedBoxes.includes(box.id)) {
-      return "bg-[#43D277] border-[#43D277] shadow-lg shadow-[#43D277]/30";
+      return "bg-[#43D277] border-[#43D277] shadow-lg shadow-[#43D277]/30 bg-cover bg-center";
     }
 
     switch (boxColor) {
       case "green":
-        return `bg-gradient-to-br from-red-500 via-red-600 to-red-500 
+        return `bg-[url('/assets/red-box.png')] bg-cover bg-center 
                 border-yellow-500/50 shadow-red-500/20 hover:shadow-red-500/30`;
       case "black":
-        return `bg-gradient-to-br from-[#43D277] via-[#43D277]/90 to-[#38b366] 
+        return `bg-[url('/assets/green-box.png')] bg-cover bg-center 
                 border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
       case "green-black":
-        return `bg-gradient-to-br from-[#43D277] via-gray-900 to-black 
+        return `bg-[url('/assets/green-black-box.png')] bg-cover bg-center 
                 border-[#43D277]/50 shadow-[#43D277]/20 hover:shadow-[#43D277]/30`;
       default:
-        return "bg-white/5 border-white/10";
+        return "bg-white/5 border-white/10 bg-cover bg-center";
     }
   };
+
+  useEffect(() => {
+    // Preload images
+    const images = [
+      "/assets/red-box.png",
+      "/assets/green-box.png",
+      "/assets/green-black-box.png",
+    ];
+
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
@@ -291,15 +297,19 @@ function Home() {
                   {/* Box Content */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     {!box.selected_by && !selectedBoxes.includes(box.id) && (
-                      <RibbonSvg 
+                      <RibbonSvg
                         color={
-                          boxColor === "green" 
+                          boxColor === "green"
                             ? "#FFD700" // Gold for red boxes (which use the "green" backend value)
                             : "#2EA55C" // Darker green (#2EA55C instead of #43D277)
                         }
                       />
                     )}
-                    <span className={`text-2xl ${box.selected_by ? "opacity-50" : ""}`}>
+                    <span
+                      className={`text-2xl ${
+                        box.selected_by ? "opacity-50" : ""
+                      }`}
+                    >
                       {box.selected_by
                         ? "🔒"
                         : selectedBoxes.includes(box.id)
@@ -319,7 +329,7 @@ function Home() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="absolute -top-2 -right-2 w-6 h-6 z-20"
+                      className="absolute z-20 w-6 h-6 -top-2 -right-2"
                     >
                       <div className="absolute inset-0 rounded-full bg-[#43D277]">
                         <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-black">

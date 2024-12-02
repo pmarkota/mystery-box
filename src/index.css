@@ -24,3 +24,8 @@ input:focus {
 * {
   transition: all 0.2s ease-in-out;
 }
+
+.bg-cover {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

@@ -209,6 +209,19 @@ function AdminDashboard() {
     }
   };
 
+  const getPreviewBoxStyles = (color) => {
+    switch (color.id) {
+      case "green":
+        return "bg-[url('/assets/red-box.png')] bg-cover bg-center";
+      case "black":
+        return "bg-[url('/assets/green-box.png')] bg-cover bg-center";
+      case "green-black":
+        return "bg-[url('/assets/green-black-box.png')] bg-cover bg-center";
+      default:
+        return "bg-white/5";
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       {[...Array(5)].map((_, i) => (

@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 import { useNavigate } from "react-router-dom";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { createClient } from "@supabase/supabase-js";
 
@@ -135,6 +135,27 @@ function Login() {
     },
   };
 
+  // Add animation variants for text transitions
+  const textVariants = {
+    initial: { opacity: 0, y: 10 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -10,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
+      },
+    },
+  };
+
   return (
     <div className="absolute inset-0 min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Animated background elements */}
@@ -179,9 +200,18 @@ function Login() {
 
           <motion.div variants={itemVariants} className="mb-8">
             <h2 className="text-4xl font-bold text-center">
-              <span className="bg-gradient-to-r from-[#43D277] via-white to-[#43D277] bg-clip-text text-transparent">
-                {loginText.login_welcome_text}
-              </span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={loginText.login_welcome_text}
+                  variants={textVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="bg-gradient-to-r from-[#43D277] via-white to-[#43D277] bg-clip-text text-transparent"
+                >
+                  {loginText.login_welcome_text}
+                </motion.span>
+              </AnimatePresence>
             </h2>
 
             <motion.div
@@ -209,7 +239,17 @@ function Login() {
                 className="block text-[#43D277] text-sm font-medium mb-2"
                 htmlFor="username"
               >
-                {loginText.login_username_label}
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={loginText.login_username_label}
+                    variants={textVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
+                    {loginText.login_username_label}
+                  </motion.span>
+                </AnimatePresence>
               </motion.label>
 
               <motion.input
@@ -232,7 +272,17 @@ function Login() {
                 className="block text-[#43D277] text-sm font-medium mb-2"
                 htmlFor="password"
               >
-                {loginText.login_password_label}
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={loginText.login_password_label}
+                    variants={textVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
+                    {loginText.login_password_label}
+                  </motion.span>
+                </AnimatePresence>
               </motion.label>
 
               <motion.input
@@ -261,13 +311,18 @@ function Login() {
                          bg-gradient-to-r from-[#43D277] to-[#38b366]
                          hover:shadow-[#43D277]/25 active:shadow-[#43D277]/15"
               >
-                <motion.span
-                  className="relative z-10"
-                  animate={isLoading ? { opacity: [1, 0.7, 1] } : {}}
-                  transition={{ duration: 1, repeat: Infinity }}
-                >
-                  {isLoading ? "Signing in..." : loginText.login_button_text}
-                </motion.span>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={isLoading ? "loading" : loginText.login_button_text}
+                    variants={textVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="relative z-10"
+                  >
+                    {isLoading ? "Signing in..." : loginText.login_button_text}
+                  </motion.span>
+                </AnimatePresence>
               </motion.button>
             </motion.div>
           </form>
