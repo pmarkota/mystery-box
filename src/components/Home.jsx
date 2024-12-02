@@ -14,18 +14,6 @@ import redBox from "../assets/BOX DESIGNS-01.png";
 import greenBox from "../assets/BOX DESIGNS-02.png";
 import greenBlackBox from "../assets/BOX DESIGNS-03.png";
 
-const RibbonSvg = ({ color }) => (
-  <svg
-    className="absolute top-0 z-10 w-8 h-12 -translate-x-1/2 left-1/2"
-    viewBox="0 0 32 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M16 0L32 16L16 32L0 16L16 0Z" fill={color} fillOpacity="0.9" />
-    <path d="M16 32L24 48L16 40L8 48L16 32Z" fill={color} fillOpacity="0.9" />
-  </svg>
-);
-
 function Home() {
   const { user, token, refreshUserData } = useAuth();
 
@@ -163,22 +151,46 @@ function Home() {
 
   const getBoxStyles = (box) => {
     if (box.selected_by) {
-      return "bg-black/50 border-gray-700/50 cursor-not-allowed";
+      return {
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        borderColor: "rgba(75, 75, 75, 0.5)",
+        cursor: "not-allowed",
+      };
     }
 
     if (selectedBoxes.includes(box.id)) {
-      return `background-image: url(${greenBox}); background-size: cover; background-position: center; border-color: #43D277;`;
+      return {
+        backgroundImage: `url(${greenBox})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        borderColor: "#43D277",
+      };
     }
 
     switch (boxColor) {
       case "green":
-        return `background-image: url(${redBox}); background-size: cover; background-position: center;`;
+        return {
+          backgroundImage: `url(${redBox})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        };
       case "black":
-        return `background-image: url(${greenBox}); background-size: cover; background-position: center;`;
+        return {
+          backgroundImage: `url(${greenBox})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        };
       case "green-black":
-        return `background-image: url(${greenBlackBox}); background-size: cover; background-position: center;`;
+        return {
+          backgroundImage: `url(${greenBlackBox})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        };
       default:
-        return "bg-white/5 border-white/10";
+        return {
+          backgroundColor: "rgba(255, 255, 255, 0.05)",
+          borderColor: "rgba(255, 255, 255, 0.1)",
+        };
     }
   };
 
@@ -289,23 +301,11 @@ function Home() {
                     (selectedBoxes.length >= (user?.credits || 0) &&
                       !selectedBoxes.includes(box.id))
                   }
-                  className={`
-                    relative aspect-square rounded-xl transition-all duration-300
-                    ${getBoxStyles(box)}
-                    border-2 overflow-visible
-                  `}
+                  style={getBoxStyles(box)}
+                  className="relative overflow-hidden transition-all duration-300 border-2 aspect-square rounded-xl"
                 >
-                  {/* Box Content */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    {!box.selected_by && !selectedBoxes.includes(box.id) && (
-                      <RibbonSvg
-                        color={
-                          boxColor === "green"
-                            ? "#FFD700" // Gold for red boxes (which use the "green" backend value)
-                            : "#2EA55C" // Darker green (#2EA55C instead of #43D277)
-                        }
-                      />
-                    )}
+                  {/* Box Content - Simplified */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30">
                     <span
                       className={`text-2xl ${
                         box.selected_by ? "opacity-50" : ""
@@ -318,8 +318,9 @@ function Home() {
                         : ""}
                     </span>
                     <span
-                      className={`text-sm mt-2
-                      ${box.selected_by ? "text-gray-500" : "text-white"}`}
+                      className={`text-sm mt-2 ${
+                        box.selected_by ? "text-gray-500" : "text-white"
+                      }`}
                     >
                       #{box.id}
                     </span>
