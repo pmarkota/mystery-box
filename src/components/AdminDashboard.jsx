@@ -543,10 +543,6 @@ function AdminDashboard() {
                       relative overflow-hidden group
                     `}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <span className="text-sm text-white">#{color.id}</span>
-                    </div>
-
                     <div
                       className={`
                       absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
