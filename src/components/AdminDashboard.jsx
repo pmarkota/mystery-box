@@ -14,22 +14,9 @@ import {
   updateLoginText,
 } from "../services/adminService";
 import { useNavigate } from "react-router-dom";
-// Import the box images
 import redBox from "../assets/BOX DESIGNS-01.png";
 import greenBox from "../assets/BOX DESIGNS-02.png";
 import greenBlackBox from "../assets/BOX DESIGNS-03.png";
-
-const RibbonSvg = ({ color }) => (
-  <svg
-    className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-12 z-10"
-    viewBox="0 0 32 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M16 0L32 16L16 32L0 16L16 0Z" fill={color} fillOpacity="0.9" />
-    <path d="M16 32L24 48L16 40L8 48L16 32Z" fill={color} fillOpacity="0.9" />
-  </svg>
-);
 
 function AdminDashboard() {
   const { token, logout } = useAuth();
@@ -511,24 +498,21 @@ function AdminDashboard() {
               >
                 <div className="mb-6">
                   <div
+                    style={getPreviewBoxStyles(color)}
                     className={`
-                    w-24 h-24 mx-auto rounded-2xl border-2 
-                    ${color.style}
-                    shadow-lg transition-all duration-300
-                    relative overflow-hidden group
-                  `}
+                      w-24 h-24 mx-auto rounded-2xl border-2 
+                      shadow-lg transition-all duration-300
+                      relative overflow-hidden group
+                    `}
                   >
-                    <RibbonSvg
-                      color={
-                        color.id === "green"
-                          ? "#FFD700" // Gold ribbon for red box
-                          : "#2EA55C" // Darker green ribbon (#2EA55C instead of #43D277)
-                      }
-                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                      <span className="text-sm text-white">#{color.id}</span>
+                    </div>
+
                     <div
                       className={`
                       absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                      ${color.preview}
+                      bg-black/20
                     `}
                     />
 
@@ -536,12 +520,8 @@ function AdminDashboard() {
 
                     <div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
-                                  translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"
+                                translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"
                     />
-
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {/* Remove the gift emoji span entirely */}
-                    </div>
                   </div>
                 </div>
 
@@ -568,12 +548,6 @@ function AdminDashboard() {
                     </div>
                   </motion.div>
                 )}
-
-                <div className="absolute inset-0 transition-opacity duration-300 opacity-0 rounded-2xl hover:opacity-100">
-                  <div
-                    className={`absolute inset-0 rounded-2xl ${color.preview} blur-xl -z-10`}
-                  />
-                </div>
               </motion.button>
             ))}
           </div>
