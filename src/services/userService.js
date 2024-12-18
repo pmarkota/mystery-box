@@ -15,9 +15,11 @@ export const fetchUserData = async (token, userId) => {
 
     const response = await fetch(`${API_URL}/admin/get-user`, {
       method: "POST",
+      credentials: "include",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({ id: parsedId }),
     });

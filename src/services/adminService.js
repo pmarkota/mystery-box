@@ -5,8 +5,10 @@ export const getAllUsers = async (token) => {
     const response = await fetch(
       `https://mystery-back.vercel.app/api/user-management/admin/get-all-users`,
       {
+        credentials: "include",
         headers: {
           Authorization: `Bearer ${token}`,
+          Accept: "application/json",
         },
       }
     );
@@ -22,8 +24,10 @@ export const createUser = async (token, userData) => {
   try {
     const response = await fetch(`${API_URL}/admin/create-user`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
@@ -40,8 +44,10 @@ export const deleteUser = async (token, userId) => {
   try {
     const response = await fetch(`${API_URL}/admin/delete-user`, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ id: userId }),
@@ -58,8 +64,10 @@ export const updateUserCredits = async (token, userId, credits) => {
   try {
     const response = await fetch(`${API_URL}/admin/update-user-credits`, {
       method: "PUT",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ id: userId, credits }),
@@ -76,8 +84,10 @@ export const searchUsers = async (token, username) => {
   try {
     const response = await fetch(`${API_URL}/admin/search-users-by-username`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ username }),
@@ -96,8 +106,10 @@ export const resetAllBoxes = async (token) => {
       `https://mystery-back.vercel.app/api/box-selection/set-all-boxes-to-unselected`,
       {
         method: "PUT",
+        credentials: "include",
         headers: {
           Authorization: `Bearer ${token}`,
+          Accept: "application/json",
         },
       }
     );

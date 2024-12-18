@@ -51,8 +51,10 @@ export const AuthProvider = ({ children }) => {
         "https://mystery-back.vercel.app/api/auth/user/login",
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
+            Accept: "application/json",
           },
           body: JSON.stringify({ username, password }),
         }
@@ -77,6 +79,7 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       return true;
     } catch (err) {
+      console.error("Login error:", err);
       setError("Failed to connect to the server");
       return false;
     }
@@ -88,13 +91,16 @@ export const AuthProvider = ({ children }) => {
         "https://mystery-back.vercel.app/api/auth/admin/login",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
           body: JSON.stringify({ username, password }),
         }
       );
 
       const data = await response.json();
-      console.log(" ");
 
       if (!response.ok) {
         setError(data.error);
@@ -113,6 +119,7 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       return true;
     } catch (err) {
+      console.error("Admin login error:", err);
       setError("Failed to connect to the server");
       return false;
     }
